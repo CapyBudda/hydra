@@ -369,14 +369,22 @@ main {
 }
 
 @media (max-width: 1200px) {
-    .header {
+   .header {
         position: fixed;
         left: 0;
         top: 0;
-        background-color: color-mix(in srgb, var(--purple) 90%, transparent);
         width: 100%;
+        background-color: color-mix(in srgb, var(--purple) 90%, transparent);
         z-index: 999;
     }
+
+    /* Убираем верхний margin контейнера в фиксированном состоянии */
+    .header__container {
+        margin-top: 0;
+        padding-top: 1rem; /* Используйте padding вместо margin при необходимости */
+        padding-bottom: 1rem;
+    }
+
     .burger.active span:nth-child(1) {
         transform: rotate(45deg) translate(7px, 7px);
     }
