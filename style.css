@@ -144,8 +144,8 @@ html {
 }
 
 body {
-    margin-left: clamp(1.25rem, 8.5vw, 6.8125rem);
-    margin-right: clamp(1.25rem, 8.5vw, 6.8125rem);
+    padding-left: clamp(1.25rem, 8.5vw, 6.8125rem);
+    padding-right: clamp(1.25rem, 8.5vw, 6.8125rem);
 
     min-height: 100%;
 
@@ -274,12 +274,8 @@ a {
    HEADER
 ========================= */
 
-main {
-    padding-top: 100px;
-}
-
 .header__container {
-    margin-top: clamp(2rem, 4.5vw, 4.0625rem);
+    padding-top: clamp(2rem, 4.5vw, 4.0625rem);
 }
 
 .header__nav {
