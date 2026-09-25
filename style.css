@@ -274,6 +274,10 @@ a {
    HEADER
 ========================= */
 
+main {
+    padding-top: 100px;
+}
+
 .header__container {
     margin-top: clamp(2rem, 4.5vw, 4.0625rem);
 }
@@ -282,6 +286,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .header__logo {
@@ -322,7 +327,72 @@ a {
     display: none;
 }
 
+.burger button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+
+    width: 50px;
+    height: 50px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.burger span {
+    display: block;
+
+    width: 35px;
+    height: 4px;
+
+    background-color: var(--color-purple-light);
+    border-radius: 5px;
+
+    transition: transform 0.3s ease,
+                opacity 0.3s ease;
+}
+
+.burger button.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.burger button.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger button.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
 @media (max-width: 1200px) {
+    .header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: color-mix(in srgb, var(--purple) 90%, transparent);
+        width: 100%;
+        z-index: 999;
+    }
+    .burger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .burger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .burger span {
+        transition: 0.3s;
+    }
+    
     .header__list {
         display: none;
     }
@@ -330,7 +400,22 @@ a {
         display: none;
     }
     .burger {
-    display: block;
+        display: block;
+    }
+
+    .header__list.active {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        position: absolute;
+        top: 100%;
+        right: 0;
+
+        padding: 30px;
+
+        background: #302c41;
+        border-radius: 20px;
     }
 }
 
@@ -507,16 +592,22 @@ a {
     .contact-divide-con {
         display: none;
     }
-    .contact-phone {
-        display: none;
-    }
+    .contact-map,
+    .contact-phone,
     .contact-mail {
         display: none;
     }
+
+    .contact-map.active,
+    .contact-phone.active,
+    .contact-mail.active {
+        display: flex;
+    }
+
     .arrow-button {
         display: block;
     }
-
+    
     .contact-list {
         padding-left: 2rem;
         padding-right: 2rem;
@@ -846,6 +937,21 @@ a {
 }
 
 @media (max-width: 1240px) {
+    
+    .simulation,
+    .education,
+    .self-care,
+    .outdoor {
+        display: none;
+    }
+
+    .simulation.active,
+    .education.active,
+    .self-care.active,
+    .outdoor.active {
+        display: flex;
+    }
+
     .services-main__icon {
     margin-top: 1vw;
     }
@@ -871,17 +977,6 @@ a {
         display: block;
     }
 
-    .education {
-        display: none;
-    }
-
-    .self-care {
-        display: none;
-    }
-
-    .outdoor {
-        display: none;
-    }
 
     .services-main__list {
         justify-content: center;
@@ -984,10 +1079,18 @@ a {
     gap: 2rem;
 }
 
+.partners-button {
+    display: none;
+}
+
 @media (max-width: 1200px) {
 
     .partners__arrow-image {
         display: none;
+    }
+
+    .partners-button {
+        display: flex;
     }
 
     .partners__container {
@@ -1007,15 +1110,20 @@ a {
     .partners__list {
         justify-content: center;
     }
+    .unreal,
+    .unity,
+    .oculus,
     .vive {
         display: none;
     }
-    .oculus {
-        display: none;
+
+    .unreal.active,
+    .unity.active,
+    .oculus.active,
+    .vive.active {
+        display: flex;
     }
-    .unity {
-        display: none;
-    }
+    
 }
 
 /* =========================
@@ -1026,6 +1134,10 @@ a {
     position: relative;
 
     margin-top: clamp(7rem, 11vw, 10.375rem);
+}
+
+.technologies-button {
+    display: none;
 }
 
 .vector-15 {
@@ -1051,7 +1163,14 @@ a {
 }
 
 .features__road-list-item-number {
-    padding: clamp(2rem, 3.5vw, 2.9375rem);
+    width: clamp(8rem, 12vw, 12rem);
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
 
     border-radius: 50%;
 
@@ -1061,12 +1180,17 @@ a {
     color: var(--color-dark);
 }
 
+.features__road-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .border {
     border: clamp(0.75rem, 1.5vw, 1.375rem) solid rgb(33 30 46 / 40%);
-
     background-clip: padding-box;
-
     border-radius: 50%;
+    box-sizing: border-box;
 }
 
 .features__road-text {
@@ -1085,15 +1209,25 @@ a {
         text-align: center;
     }
 
-    .design {
+    .technologies-button {
+        display: flex;
+    }
+
+    .d-conception,
+    .design,
+    .user-testing,
+    .deploy  {
         display: none;
     }
-    .user-testing {
-        display: none;
+
+    .d-conception.active,
+    .design.active,
+    .user-testing.active,
+    .deploy.active  {
+        display: inline-flex;
+        flex-direction: column;
     }
-    .deploy {
-        display: none;
-    }
+
     .features__road-text img {
         display: none;
         text-align: center;
